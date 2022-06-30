@@ -1,0 +1,13 @@
+module.exports = {
+  up (queryInterface) {
+    return queryInterface.sequelize.query(`
+      ALTER TYPE transfer_with_associations ADD ATTRIBUTE updated_at timestamp with time zone;
+    `)
+  },
+
+  down (queryInterface) {
+    return queryInterface.sequelize.query(`
+      ALTER TYPE transfer_with_associations DROP ATTRIBUTE updated_at timestamp with time zone;
+    `)
+  },
+}

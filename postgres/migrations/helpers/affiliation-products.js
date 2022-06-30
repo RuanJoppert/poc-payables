@@ -1,0 +1,18 @@
+module.exports = [
+  'Alelo Refeição',
+  'Alelo Alimentação',
+  'VR Refeição',
+  'VR Alimentação',
+  'VR Cultura',
+  'VR Auto',
+  'VR Benefícios',
+  'Sodexo Alimentação',
+  'Sodexo Refeição',
+  'Sodexo Cultura',
+  'Sodexo Combustível',
+  'Sodexo Premium',
+  'Sodexo Gift',
+  'Ticket Refeição',
+  'Ticket Alimentação',
+  'Ticket Cultura',
+]

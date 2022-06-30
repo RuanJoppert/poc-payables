@@ -1,0 +1,8 @@
+CREATE SCHEMA tiger;
+CREATE EXTENSION IF NOT EXISTS fuzzystrmatch          WITH SCHEMA public;
+
+CREATE SCHEMA topology;
+CREATE EXTENSION IF NOT EXISTS plpgsql          WITH SCHEMA pg_catalog;
+CREATE EXTENSION IF NOT EXISTS pg_buffercache   WITH SCHEMA public;
+CREATE EXTENSION IF NOT EXISTS pgcrypto         WITH SCHEMA public;
+
