@@ -24,7 +24,7 @@ setup-connectors:
 	./scripts/connectors/sink/payables-view.sh
 .PHONY: setup-connectors
 
-setup-all: setup-db setup-kafka-ecosystem setup-connectors setup-app setup-controlcenter
+setup-all: setup-db setup-kafka-ecosystem setup-connectors setup-controlcenter
 .PHONY: setup-all
 
 populate-tables:
