@@ -9,6 +9,7 @@ const kafka = require('./kafka')
 const application = require('./app/index')
 const users = require('./app/users')
 const todos = require('./app/todos')
+const payables = require('./app/payables')
 const repositories = require('./repositories')
 
 const rawModules = [
@@ -22,6 +23,7 @@ const rawModules = [
   users,
   repositories,
   todos,
+  payables,
 ]
 
 const container = createContainer()
