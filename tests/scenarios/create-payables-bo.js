@@ -15,13 +15,6 @@ const db = sql.open('postgres', connectionString)
 export const options = {
   scenarios: {
     pretest: {
-      // executor: 'shared-iterations',
-
-      // vus: 5,
-      // iterations: 100,
-      // // iterations: 1 * 1000 * 1000,
-      // maxDuration: '5h',
-
       executor: 'per-vu-iterations',
       vus: 5,
       iterations: 200,
@@ -38,7 +31,7 @@ export function teardown () {
 }
 
 export default function () {
-  const total = 5
+  const total = 5000
   const initial = (scenario.iterationInTest + 1) * total
 
   db.exec(updatePayableBatch(total, initial))
