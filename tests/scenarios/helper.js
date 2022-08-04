@@ -1,5 +1,5 @@
-export const connectionString = 'postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable'
-// export const connectionString = 'postgres://ruan.felipe:__Ru@nF3l1p3__@live-db-prd-aws-2607-sanitized.cqhzzsnl0ged.us-east-1.rds.amazonaws.com:5432/pagarme?sslmode=disable'
+// export const connectionString = 'postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable'
+export const connectionString = 'postgres://ruan.felipe:__Ru@nF3l1p3__@live-db-prd-aws-2607-sanitized.cqhzzsnl0ged.us-east-1.rds.amazonaws.com:5432/pagarme?sslmode=disable'
 
 export const makePayable = ({ updatedAt }) => `insert into "Payables" (
   "id", "accrual_date", "amount", "anticipation_fee",
