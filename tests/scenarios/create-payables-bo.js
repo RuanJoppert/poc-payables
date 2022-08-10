@@ -7,11 +7,6 @@ import { connectionString, updatePayableBatch } from './helper.js'
 
 const db = sql.open('postgres', connectionString)
 
-// const total = 5
-// let initial = scenario.iterationInTest
-
-// console.log('opa')
-
 export const options = {
   scenarios: {
     pretest: {
@@ -32,7 +27,7 @@ export function teardown () {
 
 export default function () {
   const total = 5000
-  const initial = (scenario.iterationInTest + 1) * total
+  const initial = 10000000 + (scenario.iterationInTest + 1) * total
 
   db.exec(updatePayableBatch(total, initial))
 

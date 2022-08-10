@@ -56,15 +56,16 @@ FROM   cte
 WHERE  p.id = cte.id`
 
 export const updatePayableBatch = (total = 1000, initial = 0) => `
-  START TRANSACTION;
-    ${Array(total).fill(initial).reduce((acc, cur, i) => `
-    ${acc}
-    UPDATE "Payables" SET "status"='paid',"updated_at"='2022-08-04 20:37:54.659 +00:00' WHERE "id" = ${cur + i};
-      INSERT INTO "BalanceOperations" ("id","company_id","recipient_id","amount","fee","type","object_type","object_id","originator_model","originator_model_id","balance_old_amount","balance_amount","status","created_at","updated_at") VALUES (DEFAULT,'coolcompany','coolrecipient',-1000,-10,'payable','payable','${cur + i}',NULL,NULL,NULL,0,'waiting_funds','2022-08-04 20:37:54.664 +00:00','2022-08-04 20:37:54.664 +00:00') RETURNING *;
-      INSERT INTO "BalanceOperations" ("id","company_id","recipient_id","amount","fee","type","object_type","object_id","originator_model","originator_model_id","balance_old_amount","balance_amount","status","created_at","updated_at") VALUES (DEFAULT,'coolcompany','coolrecipient',1000,10,'payable','payable','${cur + i}',NULL,NULL,NULL,0,'available','2022-08-04 20:37:54.667 +00:00','2022-08-04 20:37:54.667 +00:00') RETURNING *;
-    `, '')}
-  COMMIT;
-  `
+START TRANSACTION;
+  UPDATE "Payables" SET "status"='paid',"updated_at"='2022-08-04 20:37:54.659 +00:00' WHERE "id" in (${Array.from({ length: total }, (_, i) => i + initial)});
+
+  ${Array(total).fill(initial).reduce((acc, cur, i) => `
+  ${acc}
+    INSERT INTO "BalanceOperations" ("id","company_id","recipient_id","amount","fee","type","object_type","object_id","originator_model","originator_model_id","balance_old_amount","balance_amount","status","created_at","updated_at") VALUES (DEFAULT,'coolcompany','coolrecipient',-1000,-10,'payable','payable','${cur + i}',NULL,NULL,NULL,0,'waiting_funds','2022-08-04 20:37:54.664 +00:00','2022-08-04 20:37:54.664 +00:00') RETURNING *;
+    INSERT INTO "BalanceOperations" ("id","company_id","recipient_id","amount","fee","type","object_type","object_id","originator_model","originator_model_id","balance_old_amount","balance_amount","status","created_at","updated_at") VALUES (DEFAULT,'coolcompany','coolrecipient',1000,10,'payable','payable','${cur + i}',NULL,NULL,NULL,0,'available','2022-08-04 20:37:54.667 +00:00','2022-08-04 20:37:54.667 +00:00') RETURNING *;
+  `, '')}
+COMMIT;
+`
 
 export default {
   makePayable, connectionString, updateRandomPayable, updatePayableBatch,
